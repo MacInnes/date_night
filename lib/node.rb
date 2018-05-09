@@ -5,11 +5,11 @@ class Node
   attr_accessor :left,
                 :right
   
-  def initialize(title = nil, score = nil, left = nil, right = nil)
+  def initialize(title = nil, score = 0)
     @title = title
     @score = score
-    @left = left
-    @right = right
+    @left = 0 
+    @right = 0 
   end
 
 end

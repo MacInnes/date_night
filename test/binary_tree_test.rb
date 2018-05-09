@@ -12,14 +12,14 @@ class BinaryTreeTest < Minitest::Test
 
 
   def test_exists
-    # skip
+    skip
     tree = BinaryTree.new
 
     assert_instance_of BinaryTree, tree
   end
 
   def test_insert_root
-    # skip
+    skip
     tree = BinaryTree.new
 
     assert_equal 0, tree.insert("a movie title", 60)
@@ -28,19 +28,25 @@ class BinaryTreeTest < Minitest::Test
   end
 
   def test_insert_node
-
+    skip
+    
     tree = BinaryTree.new
-    root_insert = tree.insert("a movie", 50)
-    node_1_insert = tree.insert("another", 75)
-    node_2_insert = tree.insert("a third", 25)
+    root_insert = tree.insert("one", 50)
+    node_2_insert = tree.insert("two", 75)
+    node_3_insert = tree.insert("three", 25)
+    node_4_insert = tree.insert("four", 15)
+    node_5_insert = tree.insert("five", 99)
 
     assert_equal 0, root_insert
-    assert_equal 1, node_1_insert
     assert_equal 1, node_2_insert
+    assert_equal 1, node_3_insert
+    assert_equal 2, node_4_insert
+    assert_equal 2, node_5_insert
 
   end
 
   def test_include_value_method
+    skip
     tree = BinaryTree.new
     root_insert = tree.insert("a movie", 50)
     node_1_insert = tree.insert("another", 75)
@@ -50,6 +56,21 @@ class BinaryTreeTest < Minitest::Test
     assert_equal true, tree.include?(25)
     assert_equal false, tree.include?(86)
 
+  end
+
+  def test_depth_of_value_method
+    # skip
+    tree = BinaryTree.new
+    root_insert = tree.insert("a movie", 50)
+    node_1_insert = tree.insert("another", 75)
+    node_2_insert = tree.insert("a third", 25)
+    node_3_insert = tree.insert("a fourth", 35)
+
+    assert_equal 0, tree.depth_of(50)
+    assert_equal 1, tree.depth_of(25)
+    assert_equal 1, tree.depth_of(75)
+    assert_equal 2, tree.depth_of(35)
+    assert_equal -1, tree.depth_of(86)
   end
 
 
