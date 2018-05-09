@@ -16,18 +16,18 @@ class NodeTest < Minitest::Test
 
     assert_equal "hello", node.title
     assert_equal 67, node.score
-    assert_equal hash, node.left
-    assert_equal hash, node.right
+    assert_nil nil, node.left
+    assert_nil nil, node.right
   end
 
   def test_no_args
     node = Node.new
     hash = Hash.new
 
-    assert_equal nil, node.title
-    assert_equal nil, node.score
-    assert_equal hash, node.left
-    assert_equal hash, node.right
+    assert_nil nil, node.title
+    assert_nil nil, node.score
+    assert_nil nil, node.left
+    assert_nil nil, node.right
   end
 
   def test_reassign_left_right
