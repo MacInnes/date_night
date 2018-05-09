@@ -12,14 +12,14 @@ class BinaryTreeTest < Minitest::Test
 
 
   def test_exists
-    skip
+    # skip
     tree = BinaryTree.new
 
     assert_instance_of BinaryTree, tree
   end
 
   def test_insert_root
-    skip
+    # skip
     tree = BinaryTree.new
 
     assert_equal 0, tree.insert("a movie title", 60)
@@ -40,4 +40,31 @@ class BinaryTreeTest < Minitest::Test
 
   end
 
+  def test_include_value_method
+    tree = BinaryTree.new
+    root_insert = tree.insert("a movie", 50)
+    node_1_insert = tree.insert("another", 75)
+    node_2_insert = tree.insert("a third", 25)
+
+    assert_equal true, tree.include?(50)
+    assert_equal true, tree.include?(25)
+    assert_equal false, tree.include?(86)
+
+  end
+
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,9 +12,6 @@ class BinaryTree
   def insert(string, value, depth = 0, current_node = @tree)
     node = Node.new(string, value)
 
-    # empty_node = Node.new
-
-    # binding.pry
     if current_node.score == nil
       @tree = node
 
@@ -30,8 +27,37 @@ class BinaryTree
       current_node.right = node
       insert(string, value, depth, node)
     end
-    binding.pry
+
     return depth
   end
 
+  def include?(value, current_node = @tree)
+    if value == current_node.score
+      return true
+    elsif value < current_node.score && current_node.left != nil
+      # search left
+      include?(value, current_node.left)
+    elsif value > current_node.score && current_node.right != nil
+      #search right
+      include?(value, current_node.right)
+    else
+      return false
+    end
+
+  end
+
+
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
