@@ -118,10 +118,22 @@ class BinaryTree
 
   def health(depth, total_nodes = 0, children_nodes = 0, current_node = @root)
     # expected [nodes at this level] output, each node will have [score, children +1, % of [1]/total nodes]
-    if current_node == 0 # if we are on a leaf (should be the min value)
-      return [] #initialize array for output
+    # wow this is hard, skipping for now
+  end
+
+  def leaves(total = 0, current_node = @root)
+    if current_node.left = 0 && current_node.right == 0
+      total +=1
+    elsif current_node.left != 0
+      # if there is a left node, move there
       
-    end  
+      leaves(total, current_node.left)
+    elsif current_node.right != 0
+      # if there is a right node, move there
+
+      leaves(total, current_node.right)
+    end
+    total
   end
 
 end
