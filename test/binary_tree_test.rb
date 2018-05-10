@@ -108,6 +108,7 @@ class BinaryTreeTest < Minitest::Test
   end
 
   def test_sort
+    skip
     tree = BinaryTree.new
     root_insert = tree.insert("one", 50)
     node_2_insert = tree.insert("two", 75)
@@ -124,16 +125,43 @@ class BinaryTreeTest < Minitest::Test
     skip
     tree = BinaryTree.new
 
-    tree_test = BinaryTree.new
-    root_insert = tree.insert("one", 50)
-    node_2_insert = tree.insert("two", 75)
-    node_3_insert = tree.insert("three", 25)
-    node_4_insert = tree.insert("four", 15)
-    node_5_insert = tree.insert("five", 99)
+    assert_equal 6, tree.load("netflix_file.txt")
+    assert_equal 99, tree.load("movies.txt")
 
-    file = tree.load("netflix_file.txt")
+    assert_equal true, tree.include?("73") # Ballad of Ricky Bobby
+  end
 
-    assert_equal "Hi my name is Andy"
+  def test_health
+    tree = BinaryTree.new
+    tree.insert(98, "Animals United")
+    tree.insert(58, "Armageddon")
+    tree.insert(36, "Bill & Ted's Bogus Journey")
+    tree.insert(93, "Bill & Ted's Excellent Adventure")
+    tree.insert(86, "Charlie's Angels")
+    tree.insert(38, "Charlie's Country")
+    tree.insert(69, "Collateral Damage")
+
+    
+    expected_0 = [[98, 7, 100]]
+    expected_1 = [[58, 6, 85]]
+    expected_2 = [[36, 2, 28], [93, 3, 42]]
+
+    result_0 = tree.health(0)
+    result_1 = tree.health(1)
+    result_2 = tree.health(2)
+
+    # tree.health(0)
+    # => [[98, 7, 100]]
+    # tree.health(1)
+    # => [[58, 6, 85]]
+    # tree.health(2)
+    # => [[36, 2, 28], [93, 3, 42]]
+
+    assert_equal expected_0, result_0
+    assert_equal expected_1, result_1
+    assert_equal expected_2, result_2
+
+    
   end
 
 end

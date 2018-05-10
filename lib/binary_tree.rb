@@ -91,19 +91,33 @@ class BinaryTree
   end
 
   def sort(current_node = @root, output = [])
-    if current_node == 0  # output returns from the recursion if there's no left / right (LEAF) - node initializes with left => 0, right => 0
-      return output.map { |each| each.to_h }.to_a # returns the output as an array
-    elsif current_node.left == 0 # eventually min value
-      return [current_node.to_h] + sort(current_node.right, output) # first entry to output: output + recursive to the right
-    elsif current_node.right == 0 # eventually max value aka END of our array (or subarray we're building)
+    if current_node == 0  # this means the parent that called this is a LEAF - break statement
+      return output.map { |each| each.to_h } # returns the output as an array
+    elsif current_node.left == 0 # eventually min value (or min value for that instance of recursion)
+      return [current_node.to_h] + sort(current_node.right, output) # first time this will be the ROOT, followed by each left leaf
+    elsif current_node.right == 0 # eventually max value of our array
       return sort(current_node.left, output) + [current_node.to_h]
-    else # combine it all...?
+    else # combine it all - add the current node to the middle
       sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
     end
   end
   
+  def load(filename)
+    file = File.new(filename, "r")
 
+    lines = []
+    while (line = file.gets)
+      lines << line.chomp
+    end
+    nodes = lines.map{ |e| e.split(", ") }.map { |e| insert(e[1], e[0]) }
+    # binding.pry
+    nodes.length
+  end
 
+  def health(depth)
+    # expected [nodes at this level] each node will have [score, children +1, % of [1]/total nodes]
+    
+  end
 end
 
 
