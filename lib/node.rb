@@ -8,8 +8,12 @@ class Node
   def initialize(title = nil, score = 0)
     @title = title
     @score = score
-    @left = 0 
-    @right = 0 
+    @left = 0
+    @right = 0
+  end
+
+  def to_h
+    {@title => @score}
   end
 
 end

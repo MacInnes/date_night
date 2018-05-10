@@ -47,4 +47,17 @@ class NodeTest < Minitest::Test
     refute_equal node_wrong, node.right
   end
 
+  def test_to_h
+    node = Node.new("a thing", 25)
+    hash = {"a thing" => 25}
+
+    assert_equal hash, node.to_h
+  end
+
 end
+
+
+
+
+
+

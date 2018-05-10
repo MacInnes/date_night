@@ -29,7 +29,7 @@ class BinaryTreeTest < Minitest::Test
 
   def test_insert_node
     skip
-    
+
     tree = BinaryTree.new
     root_insert = tree.insert("one", 50)
     node_2_insert = tree.insert("two", 75)
@@ -59,7 +59,8 @@ class BinaryTreeTest < Minitest::Test
   end
 
   def test_depth_of_value_method
-    # skip
+    skip
+
     tree = BinaryTree.new
     root_insert = tree.insert("a movie", 50)
     node_1_insert = tree.insert("another", 75)
@@ -72,6 +73,53 @@ class BinaryTreeTest < Minitest::Test
     assert_equal 2, tree.depth_of(35)
     assert_equal -1, tree.depth_of(86)
   end
+
+  def test_max_value
+    skip
+
+    tree = BinaryTree.new
+    root_insert = tree.insert("one", 50)
+    node_2_insert = tree.insert("two", 75)
+    node_3_insert = tree.insert("three", 25)
+    node_4_insert = tree.insert("four", 15)
+    
+    assert_equal 75, tree.max
+
+    node_5_insert = tree.insert("five", 99)
+
+    assert_equal 99, tree.max
+
+  end
+
+  def test_min_value
+    skip
+
+    tree = BinaryTree.new
+    root_insert = tree.insert("one", 50)
+    node_2_insert = tree.insert("two", 75)
+    node_3_insert = tree.insert("three", 25)
+  
+    assert_equal 25, tree.min
+
+    node_4_insert = tree.insert("four", 15)
+    node_5_insert = tree.insert("five", 99)
+
+    assert_equal 15, tree.min
+  end
+
+  def test_sort
+    tree = BinaryTree.new
+    root_insert = tree.insert("one", 50)
+    node_2_insert = tree.insert("two", 75)
+    node_3_insert = tree.insert("three", 25)
+    node_4_insert = tree.insert("four", 15)
+    node_5_insert = tree.insert("five", 99)
+
+    expected = [{"four" => 15}, {"three" => 25}, {"one" => 50}, {"two" => 75}, {"five" => 99}]
+
+    assert_equal expected, tree.sort.map(&:to_h)
+  end
+
 
 
 end
