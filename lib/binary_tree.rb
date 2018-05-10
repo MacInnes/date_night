@@ -160,9 +160,9 @@ class BinaryTree
   def sort(current_node = @root, output = [])
     # binding.pry
     return output if current_node == 0
-    return [current_node] + sort(current_node.right, output) if current_node.left == 0
-    return sort(current_node.left, output) + [current_node] if current_node.right == 0
-    sort(current_node.left, output) + [current_node] + sort(current_node.right, output)
+    return [current_node.to_h] + sort(current_node.right, output) if current_node.left == 0
+    return sort(current_node.left, output) + [current_node.to_h] if current_node.right == 0
+    sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
     # binding.pry
 
     # if current_node.left == 0

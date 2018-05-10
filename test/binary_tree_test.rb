@@ -117,7 +117,7 @@ class BinaryTreeTest < Minitest::Test
 
     expected = [{"four" => 15}, {"three" => 25}, {"one" => 50}, {"two" => 75}, {"five" => 99}]
 
-    assert_equal expected, tree.sort.map(&:to_h)
+    assert_equal expected, tree.sort.map
   end
 
 
