@@ -157,14 +157,28 @@ class BinaryTree
   #   nodes
   # end
 
-  def sort(current_node = @root, output = [])
-    # binding.pry
-    return output.map { |e| e.to_h }.to_a if current_node == 0
-    return [current_node.to_h] + sort(current_node.right, output) if current_node.left == 0
-    return sort(current_node.left, output) + [current_node.to_h] if current_node.right == 0
-    return sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
+  # def sort(current_node = @root, output = [])
+  #   # binding.pry
+  #   return output.map { |e| e.to_h }.to_a if current_node == 0 # this is not a node, marking the parent as a leaf which creates the first new entry to the array.
+  #   return [current_node.to_h] + sort(current_node.right, output) if current_node.left == 0 # this is a left leaf, which is the first input we want, aka: Root, tested by the child on the line above
+  #   return sort(current_node.left, output) + [current_node.to_h] if current_node.right == 0 # once the left tree is finished, if there is no right path, this adds the result of the left recursion and the current node
+  #   return sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output) # if this isn't a leaf, return the result of two recursive calls to the left and right, joined by the original node
 
+  # end
+
+  def sort(current_node = @root, output = [])
+    if current_node == 0  # output returns from the recursion if there's no left / right - node initializes with left => 0, right => 0
+      return output.map { |each| each.to_h }.to_a # intializes the output as an array
+    elsif current_node.left == 0 # eventually min value
+      return [current_node.to_h] + sort(current_node.right, output) # first entry to output: output + recursive to the right
+    elsif current_node.right == 0 # eventually max value aka END of our array (or subarray we're building)
+      return sort(current_node.left, output) + [current_node.to_h]
+    else # combine it all...?
+      sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
+    end
   end
+  
+  
 
 end
 

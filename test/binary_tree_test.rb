@@ -120,7 +120,21 @@ class BinaryTreeTest < Minitest::Test
     assert_equal expected, tree.sort
   end
 
+  def test_file_load
+    skip
+    tree = BinaryTree.new
 
+    tree_test = BinaryTree.new
+    root_insert = tree.insert("one", 50)
+    node_2_insert = tree.insert("two", 75)
+    node_3_insert = tree.insert("three", 25)
+    node_4_insert = tree.insert("four", 15)
+    node_5_insert = tree.insert("five", 99)
+
+    file = tree.load("netflix_file.txt")
+
+    assert_equal "Hi my name is Andy"
+  end
 
 end
 
