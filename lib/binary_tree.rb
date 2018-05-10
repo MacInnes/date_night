@@ -90,14 +90,16 @@ class BinaryTree
     end
   end
 
+  # I spent way too much time refactoring and understanding this method (along with the tree traversal):
+
   def sort(current_node = @root, output = [])
-    if current_node == 0  # this means the parent that called this is a LEAF - break statement
+    if current_node == 0  # this means the parent that called this is a LEAF - break statement - the parent of this should be the min node, initializing the output
       return output.map { |each| each.to_h } # returns the output as an array
     elsif current_node.left == 0 # eventually min value (or min value for that instance of recursion)
       return [current_node.to_h] + sort(current_node.right, output) # first time this will be the ROOT, followed by each left leaf
     elsif current_node.right == 0 # eventually max value of our array
-      return sort(current_node.left, output) + [current_node.to_h]
-    else # combine it all - add the current node to the middle
+      return sort(current_node.left, output) + [current_node.to_h] # so append right values to left values
+    else # combine it all - add the current node to the middle recursively, so this combines throughout the call
       sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
     end
   end
@@ -110,14 +112,18 @@ class BinaryTree
       lines << line.chomp
     end
     nodes = lines.map{ |e| e.split(", ") }.map { |e| insert(e[1], e[0]) }
-    # binding.pry
+    
     nodes.length
   end
 
-  def health(depth)
-    # expected [nodes at this level] each node will have [score, children +1, % of [1]/total nodes]
-    
+  def health(depth, total_nodes = 0, children_nodes = 0, current_node = @root)
+    # expected [nodes at this level] output, each node will have [score, children +1, % of [1]/total nodes]
+    if current_node == 0 # if we are on a leaf (should be the min value)
+      return [] #initialize array for output
+      
+    end  
   end
+
 end
 
 
