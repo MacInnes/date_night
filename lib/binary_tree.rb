@@ -159,19 +159,11 @@ class BinaryTree
 
   def sort(current_node = @root, output = [])
     # binding.pry
-    return output if current_node == 0
+    return output.map { |e| e.to_h }.to_a if current_node == 0
     return [current_node.to_h] + sort(current_node.right, output) if current_node.left == 0
     return sort(current_node.left, output) + [current_node.to_h] if current_node.right == 0
-    sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
-    # binding.pry
+    return sort(current_node.left, output) + [current_node.to_h] + sort(current_node.right, output)
 
-    # if current_node.left == 0
-    #   output == nil ? [{current_node}] : output
-    # elsif current_node.left != 0
-    #   sort(current_node.left)
-    # elsif current_node.right != 0
-    #   sort
-      
   end
 
 end
